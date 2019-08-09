@@ -1,1 +1,1 @@
-web: gunicorn training.michals_sample_app.wsgi
+web: gunicorn training.wsgi
