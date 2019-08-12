@@ -54,7 +54,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'training.urls'
 
-TEMPLATES_PATH = '/training/templates'
+PROJECT_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir))
+
+TEMPLATES_PATH = os.path.join(PROJECT_PATH, 'training/templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
