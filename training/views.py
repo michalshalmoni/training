@@ -4,7 +4,7 @@ from training.models import Counter
 
 
 def homePageView(request):
-    c, created = Counter.objects.get_or_create(id=1)
+    c, created = Counter.objects.get_or_create(value=1, eee=1)
     c.value = c.value+1
     c.save()
 
