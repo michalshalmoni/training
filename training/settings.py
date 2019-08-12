@@ -54,7 +54,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'training.urls'
 
-SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
+SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
 
 
 TEMPLATES = [
