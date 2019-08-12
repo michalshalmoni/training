@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
     web:
         build: .
@@ -9,5 +9,7 @@ services:
             - "8990:8990"
         depends_on:
             - db
+        environment:
+            - DJANGO_SETTINGS_MODULE=training.settings
     db:
         image: postgres
