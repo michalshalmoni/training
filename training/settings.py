@@ -54,7 +54,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'training.urls'
 
-PROJECT_PATH = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir))
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 TEMPLATES_PATH = os.path.join(PROJECT_PATH, 'training/templates')
 
