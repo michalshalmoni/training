@@ -2,6 +2,7 @@ version: '3'
 services:
     web:
         build: .
+        restart: always
         command: python manage.py runserver 0.0.0.0:8990
         volumes:
             - .:/code
