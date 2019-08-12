@@ -4,10 +4,11 @@ from training.models import Counter
 
 
 def homePageView(request):
-    value = Counter.objects.get(id=3).values_list('value')
-
+    c = Counter.objects.get(id=3)
+    c.value = c.value+1
+    c.save()
 
     context={
-        'Counter': value
+        'Counter': c.value
     }
     return render(request, 'counter.html', context)
