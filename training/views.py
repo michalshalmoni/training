@@ -3,4 +3,7 @@ from django.shortcuts import render
 
 
 def homePageView(request):
-    return render(request, 'counter.html')
+    context={
+        'Counter': 1
+    }
+    return render(request, 'counter.html', context)
