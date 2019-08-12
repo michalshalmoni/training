@@ -54,11 +54,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'training.urls'
 
+
+SETTINGS_PATH = os.path.dirname(__file__)
+PROJECT_PATH = os.path.join(SETTINGS_PATH, os.pardir)
+PROJECT_PATH = os.path.abspath(PROJECT_PATH)
+TEMPLATES_PATH = os.path.join(PROJECT_PATH, "templates")
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [TEMPLATES_PATH],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
