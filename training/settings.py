@@ -54,7 +54,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'training.urls'
 
-TEMPLATES_PATH = os.path.join(BASE_DIR, "templates")
+TEMPLATES_PATH = "/training/templates")
 
 TEMPLATES = [
     {
