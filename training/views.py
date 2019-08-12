@@ -3,4 +3,4 @@ from django.shortcuts import render
 
 
 def homePageView(request):
-    return render(request, 'training/counter.html')
+    return render(request, 'counter.html')
