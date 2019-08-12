@@ -54,7 +54,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'training.urls'
 
-TEMPLATES_PATH = 'training/templates'
+TEMPLATES_PATH = '/training/templates'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
