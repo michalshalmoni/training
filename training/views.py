@@ -4,9 +4,9 @@ from training.models import Counter
 
 
 def homePageView(request):
-    counter = 3#Counter.objects.get(id=3)
-    # counter.value = counter.value+1
-    # counter.save()
+    counter = Counter.objects.get(id=3)
+    counter.value = counter.value+1
+    counter.save()
 
 
 
