@@ -19,10 +19,10 @@ def favicon(request):
 def homePageView(request):
     from training.tasks import add_to_counter
     from training.models import Counter
-    task_id = add_to_counter.delay()
-    result = celery.result.AsyncResult(task_id).state
+    task = add_to_counter.delay()
+    result = celery.result.AsyncResult(task.id).state
     while result != 'SUCCESS' and  result != 'FAILURE':
-        result = celery.result.AsyncResult(task_id).state
+        result = celery.result.AsyncResult(task.id).state
         logger.info('task status' + result)
 
     logger.info('task status' + result)
