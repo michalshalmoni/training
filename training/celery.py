@@ -14,7 +14,7 @@ app = Celery('training')
 #   should have a `CELERY_` prefix.
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.
-app.config_from_object('django.conf:training.settings')
+app.config_from_object(settings, namespace='CELERY')
 
 # this is ncessary for CELERY_ONCE To use REDIS URL
 app.conf.update(
