@@ -20,12 +20,12 @@ def homePageView(request):
     from training.tasks import add_to_counter
     from training.models import Counter
     task_id = add_to_counter.delay()
-    result = celery.result.AsyncResult(task_id)
-    while result.status!='SUCCESS' and  result.status!='FAILURE':
-        result = celery.result.AsyncResult(task_id)
-        logger.info('task status' + result.status)
-        
-    logger.info('task status' + result.status)
+    result = celery.AsyncResult(task_id).state
+    while result.status != 'SUCCESS' and  result.status != 'FAILURE':
+        result = celery.AsyncResult(task_id).state
+        logger.info('task status' + result)
+
+    logger.info('task status' + result)
     c = Counter.objects.get(id=1)
     logger.info('Visitor Number ' + str(c.value) + ' visited the page')
     # raise DatabaseError('fake exception - a very critical issue happened in the db')
