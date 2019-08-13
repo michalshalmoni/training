@@ -17,11 +17,13 @@ def favicon(request):
 
 def homePageView(request):
     from training.tasks import add_to_counter
-    c = add_to_counter.delay()
-    logger.info('Visitor Number ' + str(c.result) + ' visited the page')
+    from training.models import Counter
+    result = add_to_counter.delay()
+    c = Counter.objects.get(id=1)
+    logger.info('Visitor Number ' + str(c.value) + ' visited the page')
     # raise DatabaseError('fake exception - a very critical issue happened in the db')
 
     context = {
-        'Counter': str(c.result)
+        'Counter': str(c.value)
     }
     return render(request, 'counter.html', context)
