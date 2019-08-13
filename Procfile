@@ -1,2 +1,2 @@
 web: gunicorn training.wsgi
-worker: celery worker -A training --queues=high,default --loglevel=INFO
+worker: celery worker -A training.tasks worker --concurrency=1 --loglevel=info
