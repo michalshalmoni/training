@@ -1,11 +1,13 @@
 from __future__ import absolute_import
-from celery import shared_task, app
+from celery import app
+from celery.decorators import task
+
 
 import logging
 log = logging.getLogger(__name__)
 
 
-@shared_task
+@app.task(bind=True)
 def add_to_counter():
     try:
         from training.models import Counter
