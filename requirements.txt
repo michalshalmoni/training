@@ -5,3 +5,4 @@ gunicorn
 redis==3.2.0
 celery
 django-celery
+django-celery-beat
