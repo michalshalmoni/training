@@ -160,7 +160,8 @@ LOGGING = {
         }
     }
 }
-
+TIME_ZONE = 'UTC'
+USE_TZ = True
 CELERY_BROKER_URL=os.environ['REDIS_URL']
 CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 CELERY_ACCEPT_CONTENT = ['application/json']
@@ -171,6 +172,7 @@ CELERY_TIMEZONE = TIME_ZONE
 CELERY_DEFAULT_QUEUE = 'default'
 
 from celery.schedules import crontab
+
 CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
 CELERYBEAT_SCHEDULE = {
     'add_to_scheduled_counter': {
