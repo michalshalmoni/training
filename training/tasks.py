@@ -1,5 +1,6 @@
 from __future__ import absolute_import
-from celery import shared_task,periodic_task
+from celery import shared_task
+from celery.decorators import periodic_task
 from celery.task.schedules import crontab
 
 
