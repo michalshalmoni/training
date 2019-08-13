@@ -20,9 +20,9 @@ def homePageView(request):
     from training.tasks import add_to_counter
     from training.models import Counter
     task_id = add_to_counter.delay()
-    result = celery.AsyncResult(task_id).state
+    result = celery.result.AsyncResult(task_id).state
     while result != 'SUCCESS' and  result != 'FAILURE':
-        result = celery.AsyncResult(task_id).state
+        result = celery.result.AsyncResult(task_id).state
         logger.info('task status' + result)
 
     logger.info('task status' + result)
