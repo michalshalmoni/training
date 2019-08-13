@@ -153,3 +153,17 @@ LOGGING = {
         }
     }
 }
+REDIS_URL = '{}/0'.format(os.environ['REDIS_URL'])
+CELERY_REDIS_URL = '{}/1'.format(os.environ['REDIS_URL'])
+
+# Set cache to use redis
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': REDIS_URL,
+        'TIMEOUT': 60 * 60,
+        'OPTIONS': {
+            'PARSER_CLASS': 'redis.connection.HiredisParser',
+        },
+    }
+}
