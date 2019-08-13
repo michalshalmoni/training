@@ -17,3 +17,14 @@ def add_to_counter():
        log.error(str(e))
 
 
+@shared_task
+def add_to_scheduled_counter():
+    try:
+        from training.models import ScheduledCounter
+        c = ScheduledCounter.objects.get(id=1)
+        c.value = c.value + 1
+        c.save()
+
+    except Exception as e:
+       log.error(str(e))
+

@@ -18,7 +18,7 @@ def favicon(request):
 
 def homePageView(request):
     from training.tasks import add_to_counter
-    from training.models import Counter
+    from training.models import Counter,ScheduledCounter
     task = add_to_counter.delay()
     result = celery.result.AsyncResult(task.id).state
     while result != 'SUCCESS' and  result != 'FAILURE':
@@ -27,10 +27,12 @@ def homePageView(request):
 
     logger.info('task status' + result)
     c = Counter.objects.get(id=1)
+    s = ScheduledCounter.objects.get(id=1)
     logger.info('Visitor Number ' + str(c.value) + ' visited the page')
     # raise DatabaseError('fake exception - a very critical issue happened in the db')
 
     context = {
-        'Counter': str(c.value)
+        'Counter': str(c.value),
+        'Scheduled': str(s.value),
     }
     return render(request, 'counter.html', context)
