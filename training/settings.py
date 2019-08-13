@@ -151,7 +151,7 @@ LOGGING = {
             "handlers": ["console"],
         },
         "training": {
-            'level': 'INFO',
+            'level': ('INFO', 'CRITICAL', 'ERROR'),
             'propagate': True,
             "handlers": ["console"]
         }

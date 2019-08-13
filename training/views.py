@@ -6,6 +6,7 @@ FAVICON_ICO = b'\x00\x00\x01\x00\x01\x00\x10\x10\x00\x00\x00\x00 \x00h\x04\x00\x
 from django.utils.http import http_date
 import time
 import logging
+from django.db import DatabaseError
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +22,7 @@ def homePageView(request):
     c.value = c.value+1
     c.save()
     logger.info('Visitor Number ' + str(c.value) + ' visited the page')
+    raise DatabaseError('fake exception - a very critical issue happened in the db')
 
     context = {
         'Counter': c.value
