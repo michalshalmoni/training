@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'training'
+    'training',
+    'django_celery_beat'
 
 ]
 
@@ -166,3 +167,15 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
+
+CELERY_DEFAULT_QUEUE = 'default'
+
+from celery.schedules import crontab
+CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
+CELERYBEAT_SCHEDULE = {
+    'add_to_scheduled_counter': {
+        'task': 'training.tasks.add_to_scheduled_counter',
+        'schedule': crontab(minute='*'),
+        'args': ()
+    }
+}
