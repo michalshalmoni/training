@@ -146,12 +146,12 @@ LOGGING = {
     },
     "loggers": {
         "django": {
-            'level': 'INFO',
+            'level': ['INFO', 'CRITICAL', 'ERROR'],
             'propagate': True,
             "handlers": ["console"],
         },
         "training": {
-            'level': ('INFO', 'CRITICAL', 'ERROR'),
+            'level': ['INFO', 'CRITICAL', 'ERROR'],
             'propagate': True,
             "handlers": ["console"]
         }
