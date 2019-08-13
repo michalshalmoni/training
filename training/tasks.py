@@ -1,5 +1,6 @@
 from __future__ import absolute_import
-from celery import shared_task
+from celery import shared_task,periodic_task
+from celery.task.schedules import crontab
 
 
 import logging
@@ -17,7 +18,8 @@ def add_to_counter():
        log.error(str(e))
 
 
-@shared_task
+# A periodic task that will run every minute (the symbol "*" means every)
+@periodic_task(run_every=(crontab(hour="*", minute="*", day_of_week="*")), ignore_result=True)
 def add_to_scheduled_counter():
     try:
         from training.models import ScheduledCounter

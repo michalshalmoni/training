@@ -161,6 +161,7 @@ LOGGING = {
     }
 }
 TIME_ZONE = 'UTC'
+REDIS_URL = '{}/0'.format(os.environ['REDIS_URL'])
 USE_TZ = True
 CELERY_BROKER_URL=os.environ['REDIS_URL']
 CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
@@ -170,14 +171,24 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 
 CELERY_DEFAULT_QUEUE = 'default'
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': REDIS_URL,
+        'TIMEOUT': 60 * 60,
+        'OPTIONS': {
+            'PARSER_CLASS': 'redis.connection.HiredisParser',
+        },
+    }
+}
 
 from celery.schedules import crontab
 
-CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
-CELERYBEAT_SCHEDULE = {
-    'add_to_scheduled_counter': {
-        'task': 'training.tasks.add_to_scheduled_counter',
-        'schedule': crontab(minute='*'),
-        'args': ()
-    }
-}
+# CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers.DatabaseScheduler'
+# CELERYBEAT_SCHEDULE = {
+#     'add_to_scheduled_counter': {
+#         'task': 'training.tasks.add_to_scheduled_counter',
+#         'schedule': crontab(minute='*'),
+#         'args': ()
+#     }
+# }
