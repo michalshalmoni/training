@@ -4,4 +4,5 @@ dj-database-url
 gunicorn
 redis==2.10.3
 celery
+celery-once
 django-celery
