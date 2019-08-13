@@ -21,7 +21,7 @@ def add_to_counter():
 def add_to_scheduled_counter():
     try:
         from training.models import ScheduledCounter
-        c = ScheduledCounter.objects.get_or_create(id=1, defaults={'value': 0})
+        c, created = ScheduledCounter.objects.get_or_create(id=1, defaults={'value': 0})
         c.value = c.value + 1
         c.save()
 

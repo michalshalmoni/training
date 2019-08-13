@@ -27,7 +27,7 @@ def homePageView(request):
         logger.info('task status' + result)
     logger.info('task status' + result)
     c = Counter.objects.get(id=1)
-    s = ScheduledCounter.objects.get_or_create(id=1, defaults={'value': 0})
+    s, created = ScheduledCounter.objects.get_or_create(id=1, defaults={'value': 0})
     logger.info('Visitor Number ' + str(c.value) + ' visited the page')
     # raise DatabaseError('fake exception - a very critical issue happened in the db')
 
