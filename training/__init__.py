@@ -1,1 +1,0 @@
-from training.celeryconf import app as celery_app
