@@ -1,2 +1,2 @@
 web: gunicorn training.wsgi
-worker:  bundle exec rake jobs:work
+worker: celery worker -A --app=training -l INFO
