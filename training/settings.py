@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'training'
+    'training',
+    'django_celery_beat'
+
 ]
 
 
@@ -158,8 +160,10 @@ LOGGING = {
     }
 }
 
-BROKER_URL = os.environ.get("REDISCLOUD_URL", "django://")
-BROKER_TRANSPORT_OPTIONS = {
-    "max_connections": 2,
-}
-BROKER_POOL_LIMIT = None
+CELERY_BROKER_URL=os.environ['REDIS_URL']
+CELERY_RESULT_BACKEND=os.environ['REDIS_URL']
+
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
