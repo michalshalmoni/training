@@ -12,7 +12,7 @@ def add_to_counter():
         c = Counter.objects.get(id=1)
         c.value = c.value + 1
         c.save()
-        return c
+        return str(c.value)
     except Exception as e:
        log.error(str(e))
 
