@@ -17,7 +17,7 @@ def favicon(request):
 
 def homePageView(request):
     from training.tasks import add_to_counter
-    c = add_to_counter()
+    c = add_to_counter.delay()
     logger.info('Visitor Number ' + c + ' visited the page')
     # raise DatabaseError('fake exception - a very critical issue happened in the db')
 

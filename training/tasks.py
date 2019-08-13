@@ -5,6 +5,7 @@ from celery.decorators import task
 import logging
 log = logging.getLogger(__name__)
 
+@task()
 def add_to_counter():
     try:
         from training.models import Counter
