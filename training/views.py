@@ -20,7 +20,7 @@ def homePageView(request):
     c = Counter.objects.get(id=1)
     c.value = c.value+1
     c.save()
-    logger.info('Visitor Number' + str(c.value) + 'visited the page')
+    logger.info('Visitor Number ' + str(c.value) + ' visited the page')
 
     context = {
         'Counter': c.value
